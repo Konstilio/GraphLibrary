@@ -24,3 +24,4 @@ else()
 endif()
  
 add_library(GraphLibrary STATIC ${SOURCES})
+install(TARGETS GraphLibrary DESTINATION /usr/lib)
