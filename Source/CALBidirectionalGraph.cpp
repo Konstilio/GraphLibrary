@@ -6,7 +6,7 @@
 //  Copyright © 2016 Aleksander Konstantinov. All rights reserved.
 //
 
-#include "CALBidirectionalGraph.h"
+#include "../Include/CALBidirectionalGraph.h"
 #include <algorithm>
 
 using namespace std;
