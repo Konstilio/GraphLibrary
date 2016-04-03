@@ -24,7 +24,8 @@ public:
     uint32_t Next();
     
 private:
-    CDFSIterator(Graph const &_Graph, uint32_t Vertex);
+    CDFSIterator(Graph const &_Graph, uint32_t _Vertex);
+    void fp_ProcessVertex(uint32_t _Vertex);
     
     Graph const* m_pGraph;
     uint32_t m_Vertex;

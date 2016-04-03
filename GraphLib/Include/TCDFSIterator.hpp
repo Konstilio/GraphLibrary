@@ -25,12 +25,8 @@ CDFSIterator<Graph>::CDFSIterator(Graph const &_Graph, uint32_t Vertex)
     , m_Vertex(Vertex)
     , m_Used(_Graph.Vertexes(), false)
 {
-    m_Used[m_Vertex] = false;
-    for (auto it = m_pGraph->m_G[m_Vertex].rbegin(); it != m_pGraph->m_G[m_Vertex].rend(); ++it)
-    {
-        if (!m_Used[*it])
-            m_Stack.push_back(*it);
-    }
+    m_Used[m_Vertex] = true;
+    fp_ProcessVertex(m_Vertex);
 }
 
 template<class Graph>
@@ -44,13 +40,22 @@ uint32_t CDFSIterator<Graph>::Next()
 {
     uint32_t ret = m_Stack[m_Stack.size() - 1];
     m_Stack.pop_back();
-    for (auto it = m_pGraph->m_G[ret].rbegin(); it != m_pGraph->m_G[ret].rend(); ++it)
-    {
-        if (!m_Used[*it])
-            m_Stack.push_back(*it);
-    }
+    fp_ProcessVertex(ret);
     return ret;
     
+}
+
+template<class Graph>
+void CDFSIterator<Graph>::fp_ProcessVertex(uint32_t _Vertex)
+{
+    for (auto it = m_pGraph->m_G[_Vertex].rbegin(); it != m_pGraph->m_G[_Vertex].rend(); ++it)
+    {
+        if (!m_Used[*it])
+        {
+            m_Used[*it] = true;
+            m_Stack.push_back(*it);
+        }
+    }
 }
 
 #endif //CDFSIterator_hpp
