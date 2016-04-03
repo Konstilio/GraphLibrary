@@ -5,12 +5,14 @@ include_directories(Include Include/Algorithms)
 set(
 	SOURCES 
 	Include/CALBidirectionalGraph.h
+	Include/CALGraph.h
 	Include/GraphTypeTraits.h
 	Include/TCDFSIterator.h
 	Include/TCDFSIterator.hpp
 	Include/Algorithms/TCCycleAlgorithm.h
 	Include/Algorithms/TCCycleAlgorithm.hpp
 	Source/CALBidirectionalGraph.cpp
+	Source/CALGraph.cpp
 )
 
 include(CheckCXXCompilerFlag)
@@ -25,4 +27,19 @@ else()
 endif()
  
 add_library(GraphLib STATIC ${SOURCES})
+source_group(
+	Include\\Algorithms FILES
+	Include/Algorithms/TCCycleAlgorithm.h
+	Include/Algorithms/TCCycleAlgorithm.hpp
+)
+
+source_group(
+	Include FILES
+	Include/CALBidirectionalGraph.h
+	Include/CALGraph.h
+	Include/GraphTypeTraits.h
+	Include/TCDFSIterator.h
+	Include/TCDFSIterator.hpp
+)
+	
 install(TARGETS GraphLib DESTINATION /usr/lib)

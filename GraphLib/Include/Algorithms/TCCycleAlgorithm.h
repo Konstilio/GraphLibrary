@@ -8,8 +8,12 @@
 
 #ifndef TCCycleAlgorithm_h
 #define TCCycleAlgorithm_h
+#include <type_traits>
+#include "../GraphTypeTraits.h"
 
-template <class Graph>
+using namespace GraphTraits;
+
+template <class Graph, class = typename std::enable_if<NotIsBidirectional_V<Graph>>::type>
 class TCCycleAlgorithm {
     
 public:
