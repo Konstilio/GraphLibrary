@@ -12,6 +12,7 @@
 #include <vector>
 #include <list>
 #include "TCDFSIterator.h"
+#include "Algorithms/TCCycleAlgorithm.h"
 
 class CALGraph
 {
@@ -38,6 +39,9 @@ public:
     friend class CDFSIterator<CALGraph>;
     CDFSIterator<CALGraph> DFSIterator(uint32_t _V) const noexcept;
     
+    //algorithms
+    template <class Graph, class Is>
+    friend class TCCycleAlgorithm;
     
 private:
     std::vector<std::list<uint32_t>> m_G;

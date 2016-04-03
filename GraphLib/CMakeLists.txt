@@ -11,8 +11,10 @@ set(
 	Include/TCDFSIterator.hpp
 	Include/Algorithms/TCCycleAlgorithm.h
 	Include/Algorithms/TCCycleAlgorithm.hpp
+	Include/Algorithms/CCycleAlgorithmResult.h
 	Source/CALBidirectionalGraph.cpp
 	Source/CALGraph.cpp
+	Source/Algorithms/CCycleAlgorithmResult.cpp
 )
 
 include(CheckCXXCompilerFlag)
@@ -31,6 +33,7 @@ source_group(
 	Include\\Algorithms FILES
 	Include/Algorithms/TCCycleAlgorithm.h
 	Include/Algorithms/TCCycleAlgorithm.hpp
+	Include/Algorithms/CCycleAlgorithmResult.h
 )
 
 source_group(
@@ -41,5 +44,15 @@ source_group(
 	Include/TCDFSIterator.h
 	Include/TCDFSIterator.hpp
 )
-	
+
+source_group(
+	Source FILES
+	Source/CALBidirectionalGraph.cpp
+	Source/CALGraph.cpp
+)
+
+source_group(
+	Source\\Algorithms FILES
+	Source/Algorithms/CCycleAlgorithmResult.cpp
+)	
 install(TARGETS GraphLib DESTINATION /usr/lib)
