@@ -13,7 +13,7 @@
 
 using namespace GraphTraits;
 
-template <class Graph, class = typename std::enable_if<NotIsBidirectional_V<Graph>>::type>
+template <class Graph, class = typename std::enable_if_t<NotIsBidirectional_V<Graph>>>
 class TCCycleAlgorithm {
     
 public:

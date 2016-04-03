@@ -8,8 +8,14 @@
 
 #ifndef GraphTypeTraits_h
 #define GraphTypeTraits_h
+#include <type_traits>
 #include "CALBidirectionalGraph.h"
 #include "CALGraph.h"
+
+namespace std {
+    template< bool B, class T = void >
+    using enable_if_t = typename enable_if<B,T>::type;
+}
 
 namespace GraphTraits {
     
