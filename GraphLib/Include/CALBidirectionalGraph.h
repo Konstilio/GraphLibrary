@@ -38,6 +38,9 @@ public:
     friend class CDFSIterator<CALBidirectionalGraph>;
     CDFSIterator<CALBidirectionalGraph> DFSIterator(uint32_t _V) const noexcept;
     
+    template<class Graph, bool IsWeighted>
+    friend class TCVertexIterator_Imp;
+    
     
 private:
     std::vector<std::list<uint32_t>> m_G;

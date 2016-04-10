@@ -2,6 +2,7 @@
 #include "../../GraphLib/Include/CALBidirectionalGraph.h"
 #include "../../GraphLib/Include/CALGraph.h"
 #include "../../GraphLib/Include/CALWeightGraph.h"
+#include "../../GraphLib/Include/TCVertexIterator.h"
 #include "../../GraphLib/Include/Algorithms/TCCycleAlgorithm.h"
 using namespace std;
 
@@ -21,9 +22,12 @@ int main()
         cout << it.Next() << '\n';
     }
     
-    CALGraph g(2);
+    CALGraph g(5);
     g.AddEdge(0, 1);
-    g.AddEdge(1, 0);
+    g.AddEdge(1, 2);
+    g.AddEdge(1, 3);
+    g.AddEdge(1, 4);
+    
     
     TCCycleAlgorithm<CALGraph> tc = g;
     auto tcResult = tc();
@@ -40,6 +44,18 @@ int main()
     cout << tcResult.Cycle() << endl;
     
     CALWeightGraph gw(2);
+    
+    cout << "----------------------------------------------" << endl;
+    TCVertexIterator<CALGraph> vIt(g, 1);
+    while (vIt.HasNext())
+        cout << vIt.Next() << ' ';
+    cout << endl;
+    
+    cout << "----------------------------------------------" << endl;
+    TCVertexIterator<CALBidirectionalGraph> vIt1(bg, 0);
+    while (vIt1.HasNext())
+        cout << vIt1.Next() << ' ';
+    cout << endl;
     
 
     

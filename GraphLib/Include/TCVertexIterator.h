@@ -3,21 +3,18 @@
 
 #include "GraphTypeTraits.h"
 
-class ACVertexIterator
+template <class Graph, bool IsWeighted>
+class TCVertexIterator_Imp
 {
 public:
-    virtual ~ACVertexIterator() = 0;
-    
-    virtual bool HasNext() const noexcept = 0;
-    uin32_t Next() = 0;
+    TCVertexIterator_Imp(Graph const &_G, uint32_t _V);
+    bool HasNext();
+    uint32_t Next();
 };
 
-template <class Graph = typename std::enable_if_t<NotIsWeighted_V<Graph>>>
-class TCVertexIterator : public ACVertexIterator
-{
-    
-};
+template<class Graph>
+using TCVertexIterator = TCVertexIterator_Imp<Graph, GraphTraits::IsWeighted_V<Graph>>;
 
 #include "TCVertexIterator.hpp"
 
-#endif
+#endif //CVertexIterator_h

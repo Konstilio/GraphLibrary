@@ -38,6 +38,9 @@ public:
     friend class CDFSIterator<CALGraph>;
     CDFSIterator<CALGraph> DFSIterator(uint32_t _V) const noexcept;
     
+    template<class Graph, bool IsWeighted>
+    friend class TCVertexIterator_Imp;
+    
     //algorithms
     template <class Graph, class Is>
     friend class TCCycleAlgorithm;
