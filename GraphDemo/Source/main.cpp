@@ -3,6 +3,7 @@
 #include "../../GraphLib/Include/CALGraph.h"
 #include "../../GraphLib/Include/CALWeightGraph.h"
 #include "../../GraphLib/Include/TCVertexIterator.h"
+#include "../../GraphLib/Include/TCDFSIterator.h"
 #include "../../GraphLib/Include/Algorithms/TCCycleAlgorithm.h"
 using namespace std;
 
@@ -16,7 +17,7 @@ int main()
     bg.AddEdge(1, 4);
     bg.AddEdge(2, 4);
     bg.AddEdge(3, 4);
-    auto it = bg.DFSIterator(0);
+    CDFSIterator<CALBidirectionalGraph> it(bg, 0);
     while (it.HasNext())
     {
         cout << it.Next() << '\n';

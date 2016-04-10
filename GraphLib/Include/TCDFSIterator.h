@@ -17,6 +17,7 @@ class CDFSIterator
     friend Graph;
 public:
     CDFSIterator();
+    CDFSIterator(Graph const &_Graph, uint32_t _Vertex);
     CDFSIterator(CDFSIterator const &_Other) = default;
     CDFSIterator& operator=(CDFSIterator const &_Other) = default;
     
@@ -24,7 +25,6 @@ public:
     uint32_t Next();
     
 private:
-    CDFSIterator(Graph const &_Graph, uint32_t _Vertex);
     void fp_ProcessVertex(uint32_t _Vertex);
     
     Graph const* m_pGraph;

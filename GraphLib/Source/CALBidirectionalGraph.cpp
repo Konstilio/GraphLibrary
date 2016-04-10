@@ -80,8 +80,3 @@ void CALBidirectionalGraph::IsolateVertex(uint32_t _V)
     m_G[_V].clear();
     m_nEdges -= sizeV;
 }
-
-CDFSIterator<CALBidirectionalGraph> CALBidirectionalGraph::DFSIterator(uint32_t _V) const noexcept
-{
-    return CDFSIterator<CALBidirectionalGraph>(*this, _V);
-}

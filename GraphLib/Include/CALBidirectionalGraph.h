@@ -11,7 +11,6 @@
 
 #include <vector>
 #include <list>
-#include "TCDFSIterator.h"
 
 class CALBidirectionalGraph
 {
@@ -35,8 +34,8 @@ public:
     bool RemoveEdge(uint32_t _V1, uint32_t _V2);
     void IsolateVertex(uint32_t _V);
     
-    friend class CDFSIterator<CALBidirectionalGraph>;
-    CDFSIterator<CALBidirectionalGraph> DFSIterator(uint32_t _V) const noexcept;
+    template<class Graph>
+    friend class CDFSIterator;
     
     template<class Graph, bool IsWeighted>
     friend class TCVertexIterator_Imp;

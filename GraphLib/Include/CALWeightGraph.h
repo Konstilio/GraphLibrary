@@ -11,7 +11,6 @@
 
 #include <vector>
 #include <list>
-#include "TCDFSIterator.h"
 
 class CALWeightGraph
 {

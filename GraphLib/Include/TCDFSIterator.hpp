@@ -9,6 +9,7 @@
 #ifndef CDFSIterator_hpp
 #define CDFSIterator_hpp
 #include "TCDFSIterator.h"
+#include "TCVertexIterator.h"
 
 template<class Graph>
 CDFSIterator<Graph>::CDFSIterator()
@@ -48,12 +49,13 @@ uint32_t CDFSIterator<Graph>::Next()
 template<class Graph>
 void CDFSIterator<Graph>::fp_ProcessVertex(uint32_t _Vertex)
 {
-    for (auto it = m_pGraph->m_G[_Vertex].rbegin(); it != m_pGraph->m_G[_Vertex].rend(); ++it)
-    {
-        if (!m_Used[*it])
+    TCVertexIterator<Graph> VertexIt(*m_pGraph, _Vertex);
+    while (VertexIt.HasNext()) {
+        auto curr = VertexIt.Next();
+        if (!m_Used[curr])
         {
-            m_Used[*it] = true;
-            m_Stack.push_back(*it);
+            m_Used[curr] = true;
+            m_Stack.push_back(curr);
         }
     }
 }

@@ -2,7 +2,6 @@
 #define CVertexIterator_hpp
 
 #include "TCVertexIterator.h"
-#include "CALGraph.h"
 
 template <class Graph>
 class TCVertexIterator_Imp<Graph, false>

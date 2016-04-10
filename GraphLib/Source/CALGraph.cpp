@@ -78,8 +78,3 @@ void CALGraph::IsolateVertex(uint32_t _V)
     m_G[_V].clear();
     m_nEdges -= sizeV;
 }
-
-CDFSIterator<CALGraph> CALGraph::DFSIterator(uint32_t _V) const noexcept
-{
-    return CDFSIterator<CALGraph>(*this, _V);
-}
