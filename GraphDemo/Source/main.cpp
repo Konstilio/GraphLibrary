@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../../GraphLib/Include/CALBidirectionalGraph.h"
 #include "../../GraphLib/Include/CALGraph.h"
+#include "../../GraphLib/Include/CALWeightGraph.h"
 #include "../../GraphLib/Include/Algorithms/TCCycleAlgorithm.h"
 using namespace std;
 
@@ -37,6 +38,8 @@ int main()
     TCCycleAlgorithm<CALGraph> tc1 = g1;
     tcResult = tc1();
     cout << tcResult.Cycle() << endl;
+    
+    CALWeightGraph gw(2);
     
 
     

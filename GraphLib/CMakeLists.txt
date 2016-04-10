@@ -6,14 +6,18 @@ set(
 	SOURCES 
 	Include/CALBidirectionalGraph.h
 	Include/CALGraph.h
+	Include/CALWeightGraph.h
 	Include/GraphTypeTraits.h
 	Include/TCDFSIterator.h
 	Include/TCDFSIterator.hpp
+	Include/TCVertexIterator.h
+	Include/TCVertexIterator.hpp
 	Include/Algorithms/TCCycleAlgorithm.h
 	Include/Algorithms/TCCycleAlgorithm.hpp
 	Include/Algorithms/CCycleAlgorithmResult.h
 	Source/CALBidirectionalGraph.cpp
 	Source/CALGraph.cpp
+	Source/CALWeightGraph.cpp
 	Source/Algorithms/CCycleAlgorithmResult.cpp
 )
 
@@ -40,15 +44,19 @@ source_group(
 	Include FILES
 	Include/CALBidirectionalGraph.h
 	Include/CALGraph.h
+	Include/CALWeightGraph.h
 	Include/GraphTypeTraits.h
 	Include/TCDFSIterator.h
 	Include/TCDFSIterator.hpp
+	Include/TCVertexIterator.h
+	Include/TCVertexIterator.hpp
 )
 
 source_group(
 	Source FILES
 	Source/CALBidirectionalGraph.cpp
 	Source/CALGraph.cpp
+	Source/CALWeightGraph.cpp
 )
 
 source_group(

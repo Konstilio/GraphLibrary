@@ -12,7 +12,6 @@
 #include <vector>
 #include <list>
 #include "TCDFSIterator.h"
-#include "Algorithms/TCCycleAlgorithm.h"
 
 class CALGraph
 {
