@@ -35,14 +35,26 @@ int main()
     
     cout << "----------------------------------------------" << endl;
     
-    cout << tcResult.Cycle() << endl;
+    if (tcResult.Cycle()) {
+        cout << "g has Cycle" << endl;
+        auto path = tcResult.Path();
+        cout << path << endl;
+    } else {
+        cout << "g does not have Cycle" << endl;
+    }
     
-    CALGraph g1(2);
-    g.AddEdge(0, 1);
     
-    TCCycleAlgorithm<CALGraph> tc1 = g1;
+    g.AddEdge(1, 0);
+    
+    TCCycleAlgorithm<CALGraph> tc1 = g;
     tcResult = tc1();
-    cout << tcResult.Cycle() << endl;
+    if (tcResult.Cycle()) {
+        cout << "g has Cycle" << endl;
+        auto path = tcResult.Path();
+        cout << path << endl;
+    } else {
+        cout << "g does not have Cycle" << endl;
+    }
     
     CALWeightGraph gw(2);
     

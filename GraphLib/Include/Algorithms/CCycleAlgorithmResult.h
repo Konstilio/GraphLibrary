@@ -2,6 +2,7 @@
 #define CCycleAlgorithmResult_h
 
 #include <vector>
+#include "CPath.h"
 
 class CCycleAlgorithmResult
 {
@@ -14,16 +15,16 @@ public:
     
     bool Cycle() const;
     
-    const std::vector<uint32_t> &Path() const;
+    const CPath &Path() const;
     
     template <class Graph, class Is>
     friend class TCCycleAlgorithm;
     
 private:
-    CCycleAlgorithmResult(bool _bCycle, std::vector<uint32_t> && _Path);
+    CCycleAlgorithmResult(bool _bCycle, CPath &&_Path);
     
     bool mp_bCycle;
-    std::vector<uint32_t> mp_Path;
+    CPath mp_Path;
 };
 
 #endif //CCycleAlgorithmResult_h

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.9)
+cmake_minimum_required(VERSION 3.0)
 
 include_directories(Include Include/Algorithms)
  
@@ -15,10 +15,12 @@ set(
 	Include/Algorithms/TCCycleAlgorithm.h
 	Include/Algorithms/TCCycleAlgorithm.hpp
 	Include/Algorithms/CCycleAlgorithmResult.h
+	Include/Algorithms/CPath.h
 	Source/CALBidirectionalGraph.cpp
 	Source/CALGraph.cpp
 	Source/CALWeightGraph.cpp
 	Source/Algorithms/CCycleAlgorithmResult.cpp
+	Source/Algorithms/CPath.cpp
 )
 
 include(CheckCXXCompilerFlag)
@@ -38,6 +40,7 @@ source_group(
 	Include/Algorithms/TCCycleAlgorithm.h
 	Include/Algorithms/TCCycleAlgorithm.hpp
 	Include/Algorithms/CCycleAlgorithmResult.h
+	Include/Algorithms/CPath.h
 )
 
 source_group(
@@ -62,5 +65,6 @@ source_group(
 source_group(
 	Source\\Algorithms FILES
 	Source/Algorithms/CCycleAlgorithmResult.cpp
+	Source/Algorithms/CPath.cpp
 )	
 install(TARGETS GraphLib DESTINATION /usr/lib)
