@@ -36,8 +36,8 @@ void CALBidirectionalGraph::AddVertex()
 
 void CALBidirectionalGraph::AddEdge(uint32_t _V1, uint32_t _V2)
 {
-    m_G[_V1].push_back(_V2);
-    m_G[_V2].push_back(_V1);
+    m_G[_V1].insert(_V2);
+    m_G[_V2].insert(_V1);
     ++m_nEdges;
 }
 
@@ -56,8 +56,8 @@ bool CALBidirectionalGraph::RemoveEdge(uint32_t _V1, uint32_t _V2)
 {
     auto prevSizeV1 = m_G[_V1].size();
     
-    m_G[_V1].remove(_V2);
-    m_G[_V2].remove(_V1);
+    m_G[_V1].erase(_V2);
+    m_G[_V2].erase(_V1);
     
     auto newSizeV1 = m_G[_V1].size();
     if (prevSizeV1 > newSizeV1)
@@ -71,10 +71,10 @@ bool CALBidirectionalGraph::RemoveEdge(uint32_t _V1, uint32_t _V2)
 void CALBidirectionalGraph::IsolateVertex(uint32_t _V)
 {
     for (size_t i = 0; i < _V; ++i)
-        m_G[i].remove(_V);
+        m_G[i].erase(_V);
     
     for (size_t i = _V + 1; i < Vertexes(); ++i)
-        m_G[i].remove(_V);
+        m_G[i].erase(_V);
     
     uint32_t sizeV = static_cast<uint32_t>(m_G[_V].size());
     m_G[_V].clear();

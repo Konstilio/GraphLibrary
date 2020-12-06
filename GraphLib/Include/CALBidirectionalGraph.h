@@ -10,7 +10,7 @@
 #define CALBidirectionalGraph_h
 
 #include <vector>
-#include <list>
+#include <unordered_set>
 
 class CALBidirectionalGraph
 {
@@ -42,7 +42,7 @@ public:
     
     
 private:
-    std::vector<std::list<uint32_t>> m_G;
+    std::vector<std::unordered_set<uint32_t>> m_G;
     size_t m_nEdges;
 };
 

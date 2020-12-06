@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
-
-include_directories(Include Include/Algorithms)
+project(GraphLib VERSION 1.0)
+configure_file(Config/GraphConfig.h.in GraphConfig)
  
 set(
 	SOURCES 
@@ -8,10 +8,10 @@ set(
 	Include/CALGraph.h
 	Include/CALWeightGraph.h
 	Include/GraphTypeTraits.h
-	Include/TCDFSIterator.h
-	Include/TCDFSIterator.hpp
-	Include/TCVertexIterator.h
-	Include/TCVertexIterator.hpp
+	Include/Iterators/TCDFSIterator.h
+	Include/Iterators/TCDFSIterator.hpp
+	Include/Iterators/TCVertexIterator.h
+	Include/Iterators/TCVertexIterator.hpp
 	Include/Algorithms/TCCycleAlgorithm.h
 	Include/Algorithms/TCCycleAlgorithm.hpp
 	Include/Algorithms/CCycleAlgorithmResult.h
@@ -23,18 +23,11 @@ set(
 	Source/Algorithms/CPath.cpp
 )
 
-include(CheckCXXCompilerFlag)
-CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
-CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
-if(COMPILER_SUPPORTS_CXX11)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-elseif(COMPILER_SUPPORTS_CXX0X)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
-else()
-        message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
-endif()
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
  
 add_library(GraphLib STATIC ${SOURCES})
+target_include_directories(GraphLib PUBLIC Include Include/Algorithms ${PROJECT_BINARY_DIR} PRIVATE Include/Iterators)
 source_group(
 	Include\\Algorithms FILES
 	Include/Algorithms/TCCycleAlgorithm.h
@@ -44,15 +37,19 @@ source_group(
 )
 
 source_group(
+	Include\\Iterators FILES
+	Include/Iterators/TCDFSIterator.h
+	Include/Iterators/TCDFSIterator.hpp
+	Include/Iterators/TCVertexIterator.h
+	Include/Iterators/TCVertexIterator.hpp
+)
+
+source_group(
 	Include FILES
 	Include/CALBidirectionalGraph.h
 	Include/CALGraph.h
 	Include/CALWeightGraph.h
 	Include/GraphTypeTraits.h
-	Include/TCDFSIterator.h
-	Include/TCDFSIterator.hpp
-	Include/TCVertexIterator.h
-	Include/TCVertexIterator.hpp
 )
 
 source_group(

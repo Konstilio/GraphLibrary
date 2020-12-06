@@ -24,8 +24,8 @@ public:
     }
 
 private:
-    std::list<uint32_t>::const_iterator m_It;
-    std::list<uint32_t>::const_iterator m_End;
+    std::unordered_set<uint32_t>::const_iterator m_It;
+    std::unordered_set<uint32_t>::const_iterator m_End;
 };
 
 

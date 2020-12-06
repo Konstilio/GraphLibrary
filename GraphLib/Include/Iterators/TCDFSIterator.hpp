@@ -27,7 +27,7 @@ CDFSIterator<Graph>::CDFSIterator(Graph const &_Graph, uint32_t Vertex)
     , m_Used(_Graph.Vertexes(), false)
 {
     m_Used[m_Vertex] = true;
-    fp_ProcessVertex(m_Vertex);
+    m_Stack.push_back(m_Vertex);
 }
 
 template<class Graph>

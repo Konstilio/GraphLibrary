@@ -10,12 +10,15 @@
 #define CALGraph_h
 
 #include <vector>
-#include <list>
+#include <unordered_set>
+#include <Iterators/TCDFSIterator.h>
 
 class CALGraph
 {
     
 public:
+    using DFSIterator = CDFSIterator<CALGraph>;
+    
     CALGraph(size_t _N);
     CALGraph(CALGraph const &_Other) =  default;
     CALGraph& operator=(CALGraph const &_Other) = default;
@@ -37,6 +40,9 @@ public:
     template<class Graph>
     friend class CDFSIterator;
     
+    DFSIterator DFSBegin(uint32_t _V) const;
+    
+    
     template<class Graph, bool IsWeighted>
     friend class TCVertexIterator_Imp;
     
@@ -45,7 +51,7 @@ public:
     friend class TCCycleAlgorithm;
     
 private:
-    std::vector<std::list<uint32_t>> m_G;
+    std::vector<std::unordered_set<uint32_t>> m_G;
     size_t m_nEdges;
 };
 
