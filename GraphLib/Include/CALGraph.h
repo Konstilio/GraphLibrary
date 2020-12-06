@@ -12,12 +12,14 @@
 #include <vector>
 #include <unordered_set>
 #include <Iterators/TCDFSIterator.h>
+#include <Iterators/TCVertexIterator.h>
 
 class CALGraph
 {
     
 public:
-    using DFSIterator = CDFSIterator<CALGraph>;
+    using DFSIterator = TCDFSIterator<CALGraph>;
+    using VertexIterator = TCVertexIterator<CALGraph>;
     
     CALGraph(size_t _N);
     CALGraph(CALGraph const &_Other) =  default;
@@ -25,6 +27,10 @@ public:
     CALGraph(CALGraph &&_Other) = default;
     CALGraph& operator=(CALGraph &_Other) = default;
     
+    bool operator==(CALGraph const &_Other) const;
+    bool operator!=(CALGraph const &_Other) const;
+    
+    CALGraph ReversedGraph() const;
     
     size_t Vertexes() const;
     size_t Edges() const noexcept;
@@ -42,16 +48,26 @@ public:
     
     DFSIterator DFSBegin(uint32_t _V) const;
     
+    template<class Graph>
+    friend class TCVertexIterator;
     
-    template<class Graph, bool IsWeighted>
-    friend class TCVertexIterator_Imp;
+    VertexIterator VertexItBegin(uint32_t _V) const;
     
     //algorithms
     template <class Graph, class Is>
     friend class TCCycleAlgorithm;
     
 private:
+    
+    CALGraph
+    (
+        std::vector<std::unordered_set<uint32_t>> _G
+        , std::vector<std::unordered_set<uint32_t>> _ReversedG
+        , size_t _nEdges
+     );
+    
     std::vector<std::unordered_set<uint32_t>> m_G;
+    std::vector<std::unordered_set<uint32_t>> m_ReversedG;
     size_t m_nEdges;
 };
 

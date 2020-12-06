@@ -12,7 +12,7 @@
 #include "TCVertexIterator.h"
 
 template<class Graph>
-CDFSIterator<Graph>::CDFSIterator()
+TCDFSIterator<Graph>::TCDFSIterator()
     : m_pGraph(nullptr)
     , m_Vertex(0)
     , m_Stack()
@@ -21,7 +21,7 @@ CDFSIterator<Graph>::CDFSIterator()
 }
 
 template<class Graph>
-CDFSIterator<Graph>::CDFSIterator(Graph const &_Graph, uint32_t Vertex)
+TCDFSIterator<Graph>::TCDFSIterator(Graph const &_Graph, uint32_t Vertex)
     : m_pGraph(&_Graph)
     , m_Vertex(Vertex)
     , m_Used(_Graph.Vertexes(), false)
@@ -31,13 +31,13 @@ CDFSIterator<Graph>::CDFSIterator(Graph const &_Graph, uint32_t Vertex)
 }
 
 template<class Graph>
-bool CDFSIterator<Graph>::HasNext() const noexcept
+bool TCDFSIterator<Graph>::HasNext() const noexcept
 {
     return !m_Stack.empty();
 }
 
 template<class Graph>
-uint32_t CDFSIterator<Graph>::Next()
+uint32_t TCDFSIterator<Graph>::Next()
 {
     uint32_t ret = m_Stack[m_Stack.size() - 1];
     m_Stack.pop_back();
@@ -47,7 +47,7 @@ uint32_t CDFSIterator<Graph>::Next()
 }
 
 template<class Graph>
-void CDFSIterator<Graph>::fp_ProcessVertex(uint32_t _Vertex)
+void TCDFSIterator<Graph>::fp_ProcessVertex(uint32_t _Vertex)
 {
     TCVertexIterator<Graph> VertexIt(*m_pGraph, _Vertex);
     while (VertexIt.HasNext()) {

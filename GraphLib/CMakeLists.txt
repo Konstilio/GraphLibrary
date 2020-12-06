@@ -12,6 +12,8 @@ set(
 	Include/Iterators/TCDFSIterator.hpp
 	Include/Iterators/TCVertexIterator.h
 	Include/Iterators/TCVertexIterator.hpp
+	Include/Iterators/TCTopologicalIterator.h
+	Include/Iterators/TCTopologicalIterator.hpp
 	Include/Algorithms/TCCycleAlgorithm.h
 	Include/Algorithms/TCCycleAlgorithm.hpp
 	Include/Algorithms/CCycleAlgorithmResult.h
@@ -42,6 +44,8 @@ source_group(
 	Include/Iterators/TCDFSIterator.hpp
 	Include/Iterators/TCVertexIterator.h
 	Include/Iterators/TCVertexIterator.hpp
+	Include/Iterators/TCTopologicalIterator.h
+	Include/Iterators/TCTopologicalIterator.hpp
 )
 
 source_group(

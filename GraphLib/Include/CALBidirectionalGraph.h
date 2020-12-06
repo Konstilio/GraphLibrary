@@ -11,17 +11,24 @@
 
 #include <vector>
 #include <unordered_set>
+#include <Iterators/TCDFSIterator.h>
+#include <Iterators/TCVertexIterator.h>
 
 class CALBidirectionalGraph
 {
     
 public:
+    using DFSIterator = TCDFSIterator<CALBidirectionalGraph>;
+    using VertexIterator = TCVertexIterator<CALBidirectionalGraph>;
+    
     CALBidirectionalGraph(size_t _N);
     CALBidirectionalGraph(CALBidirectionalGraph const &_Other) =  default;
     CALBidirectionalGraph& operator=(CALBidirectionalGraph const &_Other) = default;
     CALBidirectionalGraph(CALBidirectionalGraph &&_Other) = default;
     CALBidirectionalGraph& operator=(CALBidirectionalGraph &_Other) = default;
     
+    bool operator==(CALBidirectionalGraph const &_Other) const;
+    bool operator!=(CALBidirectionalGraph const &_Other) const;
     
     size_t Vertexes() const;
     size_t Edges() const noexcept;
@@ -37,9 +44,12 @@ public:
     template<class Graph>
     friend class CDFSIterator;
     
-    template<class Graph, bool IsWeighted>
-    friend class TCVertexIterator_Imp;
+    DFSIterator DFSBegin(uint32_t _V) const;
     
+    template<class Graph>
+    friend class TCVertexIterator;
+    
+    VertexIterator VertexItBegin(uint32_t _V) const;
     
 private:
     std::vector<std::unordered_set<uint32_t>> m_G;

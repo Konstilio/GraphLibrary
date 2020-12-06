@@ -12,14 +12,14 @@
 #include <vector>
 
 template<class Graph>
-class CDFSIterator
+class TCDFSIterator
 {
     friend Graph;
 public:
-    CDFSIterator();
-    CDFSIterator(Graph const &_Graph, uint32_t _Vertex);
-    CDFSIterator(CDFSIterator const &_Other) = default;
-    CDFSIterator& operator=(CDFSIterator const &_Other) = default;
+    TCDFSIterator();
+    TCDFSIterator(Graph const &_Graph, uint32_t _Vertex);
+    TCDFSIterator(TCDFSIterator const &_Other) = default;
+    TCDFSIterator& operator=(TCDFSIterator const &_Other) = default;
     
     bool HasNext() const noexcept;
     uint32_t Next();

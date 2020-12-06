@@ -3,30 +3,25 @@
 
 #include "TCVertexIterator.h"
 
-template <class Graph>
-class TCVertexIterator_Imp<Graph, false>
+template<class Graph>
+TCVertexIterator<Graph>::TCVertexIterator(Graph const &_Graph, uint32_t Vertex)
+    : m_It(_Graph.m_G[Vertex].cbegin())
+    , m_End(_Graph.m_G[Vertex].cend())
 {
-public:
-    TCVertexIterator_Imp(Graph const &_G, uint32_t _V)
-        : m_It(_G.m_G[_V].cbegin())
-        , m_End(_G.m_G[_V].cend())
-    {
-    }
-    
-    bool HasNext()
-    {
-        return m_It != m_End;
-    }
-    
-    uint32_t Next()
-    {
-        return *m_It++;
-    }
+}
 
-private:
-    std::unordered_set<uint32_t>::const_iterator m_It;
-    std::unordered_set<uint32_t>::const_iterator m_End;
-};
+template<class Graph>
+bool TCVertexIterator<Graph>::HasNext()
+{
+    return m_It != m_End;
+}
+
+template<class Graph>
+uint32_t TCVertexIterator<Graph>:: Next()
+{
+    return *m_It++;
+}
+
 
 
 #endif //CVertexIterator_hpp

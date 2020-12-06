@@ -13,11 +13,35 @@ using namespace std;
 
 CALGraph::CALGraph(size_t _N)
     : m_G(_N)
+    , m_ReversedG(_N)
     , m_nEdges(0)
 {
     
 }
 
+CALGraph::CALGraph
+(
+    std::vector<std::unordered_set<uint32_t>> _G
+    , std::vector<std::unordered_set<uint32_t>> _ReversedG
+    , size_t _nEdges
+)
+    : m_G(_G)
+    , m_ReversedG(_ReversedG)
+    , m_nEdges(_nEdges)
+{
+}
+
+bool CALGraph::operator==(CALGraph const &_Other) const {
+    return m_G == _Other.m_G;
+}
+
+bool CALGraph::operator!=(CALGraph const &_Other) const {
+    return m_G != _Other.m_G;
+}
+
+CALGraph CALGraph::ReversedGraph() const {
+    return CALGraph(m_ReversedG, m_G, m_nEdges);
+}
 
 size_t CALGraph::Vertexes() const
 {
@@ -37,6 +61,7 @@ void CALGraph::AddVertex()
 void CALGraph::AddEdge(uint32_t _V1, uint32_t _V2)
 {
     m_G[_V1].insert(_V2);
+    m_ReversedG[_V2].insert(_V1);
     ++m_nEdges;
 }
 
@@ -56,6 +81,7 @@ bool CALGraph::RemoveEdge(uint32_t _V1, uint32_t _V2)
     auto prevSizeV1 = m_G[_V1].size();
     
     m_G[_V1].erase(_V2);
+    m_ReversedG[_V2].erase(_V1);
     
     auto newSizeV1 = m_G[_V1].size();
     if (prevSizeV1 > newSizeV1)
@@ -68,17 +94,28 @@ bool CALGraph::RemoveEdge(uint32_t _V1, uint32_t _V2)
 
 void CALGraph::IsolateVertex(uint32_t _V)
 {
-    for (size_t i = 0; i < _V; ++i)
-        m_G[i].erase(_V);
+    int nErased = 0;
+    for (size_t i = 0; i < _V; ++i) {
+        nErased += m_G[i].erase(_V);
+        nErased += m_G[_V].erase(i);
+        m_ReversedG[i].erase(_V);
+        m_ReversedG[_V].erase(i);
+    }
     
-    for (size_t i = _V + 1; i < Vertexes(); ++i)
-        m_G[i].erase(_V);
+    for (size_t i = _V + 1; i < Vertexes(); ++i) {
+        nErased += m_G[i].erase(_V);
+        nErased += m_G[_V].erase(i);
+        m_ReversedG[i].erase(_V);
+        m_ReversedG[_V].erase(i);
+    }
     
-    uint32_t sizeV = static_cast<uint32_t>(m_G[_V].size());
-    m_G[_V].clear();
-    m_nEdges -= sizeV;
+    m_nEdges -= nErased;
 }
 
 CALGraph::DFSIterator CALGraph::DFSBegin(uint32_t _V) const {
     return DFSIterator(*this, _V);
+}
+
+CALGraph::VertexIterator CALGraph::VertexItBegin(uint32_t _V) const {
+    return VertexIterator(*this, _V);
 }

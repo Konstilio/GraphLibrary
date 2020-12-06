@@ -1,19 +1,18 @@
 #ifndef CVertexIterator_h
 #define CVertexIterator_h
 
-#include "GraphTypeTraits.h"
-
-template <class Graph, bool IsWeighted>
-class TCVertexIterator_Imp
+template <class Graph>
+class TCVertexIterator
 {
 public:
-    TCVertexIterator_Imp(Graph const &_G, uint32_t _V);
+    TCVertexIterator(Graph const &_G, uint32_t _V);
     bool HasNext();
     uint32_t Next();
+    
+private:
+    std::unordered_set<uint32_t>::const_iterator m_It;
+    std::unordered_set<uint32_t>::const_iterator m_End;
 };
-
-template<class Graph>
-using TCVertexIterator = TCVertexIterator_Imp<Graph, GraphTraits::IsWeighted_V<Graph>>;
 
 #include "TCVertexIterator.hpp"
 
